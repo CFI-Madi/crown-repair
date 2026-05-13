@@ -1,5 +1,12 @@
-# pnpm workspace config. Single-package repo today; this file exists to
-# approve build scripts for known-safe dependencies (pnpm 11+ convention).
-onlyBuiltDependencies:
-  - sharp
-  - unrs-resolver
+# pnpm 11+ build-script approval.
+#
+# pnpm 11 requires explicit per-package approval before running postinstall
+# scripts. The `allowBuilds` map below is the declarative form of
+# `pnpm approve-builds`. Each entry must be `true` (run the build) or `false`
+# (skip it). Works in both interactive shells and non-interactive CI (Vercel).
+#
+# sharp: Next.js image optimization — required.
+# unrs-resolver: ESLint module resolver used by eslint-config-next — required.
+allowBuilds:
+  sharp: true
+  unrs-resolver: true
