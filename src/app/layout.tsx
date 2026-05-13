@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Fraunces, JetBrains_Mono } from 'next/font/google';
 import { cn } from '@/lib/utils';
+import { PostHogProvider } from '@/components/atoms/posthog-provider';
+import { PostHogTracker } from '@/components/atoms/posthog-tracker';
 import './globals.css';
 
 /**
@@ -78,7 +80,10 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-bg font-sans text-ink-primary antialiased">
-        {children}
+        <PostHogProvider>
+          <PostHogTracker />
+          {children}
+        </PostHogProvider>
       </body>
     </html>
   );

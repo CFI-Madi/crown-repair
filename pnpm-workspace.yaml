@@ -8,9 +8,15 @@
 # sharp: Next.js image optimization — required.
 # unrs-resolver: ESLint module resolver used by eslint-config-next — required.
 # prisma + @prisma/engines + @prisma/client: Prisma CLI + query engine + generated client — required.
+# @sentry/cli: needed for source-map upload during Vercel build — required.
+# protobufjs: protocol buffers native bindings (transitive via Sentry/OpenTelemetry) — required.
+# core-js: postinstall only shows a donation prompt with no real install work — explicitly denied.
 allowBuilds:
   '@prisma/client': true
   '@prisma/engines': true
+  '@sentry/cli': true
+  core-js: false
   prisma: true
+  protobufjs: true
   sharp: true
   unrs-resolver: true
