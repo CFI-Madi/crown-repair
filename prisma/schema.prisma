@@ -1,0 +1,35 @@
+// Prisma schema for Crown Repair.
+//
+// The full data model lives in docs/planning/04-data-model.md and gets
+// implemented during Phase 0.5 Track A. For Phase 0 / Checkpoint C, this
+// schema contains only a placeholder `HealthCheck` model used by
+// /api/health to prove end-to-end DB connectivity.
+//
+// To run a migration locally (after setting DATABASE_URL in .env.local):
+//   pnpm db:migrate:dev
+//
+// To open Prisma Studio against your local DATABASE_URL:
+//   pnpm db:studio
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_DATABASE_URL")
+}
+
+// ===========================================================================
+// Phase 0 placeholder. Replaced by the full schema from 04-data-model.md
+// in Phase 0.5 Track A.
+// ===========================================================================
+
+model HealthCheck {
+  id        String   @id @default(cuid())
+  message   String
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("health_check")
+}

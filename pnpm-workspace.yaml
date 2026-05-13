@@ -7,6 +7,10 @@
 #
 # sharp: Next.js image optimization — required.
 # unrs-resolver: ESLint module resolver used by eslint-config-next — required.
+# prisma + @prisma/engines + @prisma/client: Prisma CLI + query engine + generated client — required.
 allowBuilds:
+  '@prisma/client': true
+  '@prisma/engines': true
+  prisma: true
   sharp: true
   unrs-resolver: true
