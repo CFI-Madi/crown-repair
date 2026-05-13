@@ -1,0 +1,11 @@
+node_modules
+.next
+out
+build
+dist
+public
+pnpm-lock.yaml
+*.md
+docs/planning/*.md
+docs/phase-0-execution-plan.md
+.gitignore

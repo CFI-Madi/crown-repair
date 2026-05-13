@@ -1,0 +1,5 @@
+# pnpm workspace config. Single-package repo today; this file exists to
+# approve build scripts for known-safe dependencies (pnpm 11+ convention).
+onlyBuiltDependencies:
+  - sharp
+  - unrs-resolver

@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================================
+ * DESIGN TOKENS
+ * Source of truth for the values referenced in tailwind.config.ts.
+ * Values come from docs/planning/06-design-system.md.
+ * A rebrand is a single-file edit here — components never reference raw colors.
+ * ========================================================================== */
+:root {
+  /* --- Font family resolution chains ------------------------------------- */
+  /* next/font/google sets --font-fraunces and --font-jetbrains-mono in
+     src/app/layout.tsx. General Sans is loaded via Fontshare CDN <link>. */
+  --font-display: var(--font-fraunces);
+  --font-sans: 'General Sans', 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono);
+
+  /* --- Color: Foundation ------------------------------------------------- */
+  --color-bg: #f7f2ea;
+  --color-bg-elevated: #fffcf6;
+  --color-bg-inverse: #0b1f3a;
+  --color-bg-muted: #ede6d9;
+
+  --color-ink-primary: #0b1f3a;
+  --color-ink-secondary: #2c3e5b;
+  --color-ink-muted: #5a6478;
+  --color-ink-inverse: #f7f2ea;
+  --color-ink-link: #0b1f3a;
+  --color-ink-link-hover: #1a3454;
+
+  --color-accent: #d89a3c;
+  --color-accent-emphasis: #b6802b;
+  --color-accent-muted: #f4ddb0;
+  --color-accent-ink: #0b1f3a;
+
+  --color-border-subtle: #e5ded0;
+  --color-border-default: #c9bea8;
+  --color-border-emphasis: #0b1f3a;
+  --color-border-focus: #d89a3c;
+
+  /* --- Color: Semantic --------------------------------------------------- */
+  --color-success: #2f6b4a;
+  --color-success-bg: #e6f0ea;
+  --color-warning: #b6802b;
+  --color-warning-bg: #f8ebcc;
+  --color-danger: #a8362f;
+  --color-danger-bg: #f4ddda;
+  --color-info: #2b5f8e;
+  --color-info-bg: #e0ebf4;
+
+  /* --- Color: Status (Order/Repair lifecycle) ---------------------------- */
+  --status-quote: #5a6478;
+  --status-booked: #2b5f8e;
+  --status-accepted: #2b5f8e;
+  --status-in-progress: #d89a3c;
+  --status-ready: #2a8082;
+  --status-complete: #2f6b4a;
+  --status-cancelled: #8c8474;
+  --status-disputed: #a8362f;
+}
+
+/* ============================================================================
+ * BASE LAYER — minimal reset + body defaults
+ * ========================================================================== */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-ink-primary);
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    font-feature-settings:
+      'ss01' on,
+      'cv11' on; /* opt-in stylistic features where supported */
+  }
+
+  /* Headings use the display face by default. Components may override. */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display), Georgia, serif;
+    letter-spacing: -0.01em;
+  }
+
+  /* Tabular numerics on tables and numerical data displays */
+  table,
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Always-visible amber focus ring per `06` */
+  :focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: var(--color-accent-muted);
+    color: var(--color-ink-primary);
+  }
+
+  /* Honor reduced-motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
